@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import bodyImg from './assets/body-realistic.svg'
 import './App.css'
 
 const diseases = [
@@ -108,30 +109,32 @@ function App() {
             질환-증상 관계를 탐색하고 인체 부위를 시각적으로 확인하세요.
           </p>
         </div>
-        <div className="mode-toggle">
-          <span>질환 검색</span>
-          <button
-            className={`switch ${searchMode === 'symptom' ? 'active' : ''}`}
-            onClick={() => {
-              const nextMode = searchMode === 'disease' ? 'symptom' : 'disease'
-              setSearchMode(nextMode)
-              setQuery('')
-              setSelectedSymptomId('')
-              if (nextMode === 'disease') {
-                setSelectedDiseaseId('')
-              }
-            }}
-          >
-            <span className="knob" />
-          </button>
-          <span>증상 검색</span>
-        </div>
       </header>
 
       <main className="layout">
         <section className="panel left-panel">
           <div className="panel-header">
-            <h2>{leftPanelTitle}</h2>
+            <div className="panel-header-row">
+              <h2>{leftPanelTitle}</h2>
+              <div className="mode-toggle">
+                <span>질환 검색</span>
+                <button
+                  className={`switch ${searchMode === 'symptom' ? 'active' : ''}`}
+                  onClick={() => {
+                    const nextMode = searchMode === 'disease' ? 'symptom' : 'disease'
+                    setSearchMode(nextMode)
+                    setQuery('')
+                    setSelectedSymptomId('')
+                    if (nextMode === 'disease') {
+                      setSelectedDiseaseId('')
+                    }
+                  }}
+                >
+                  <span className="knob" />
+                </button>
+                <span>증상 검색</span>
+              </div>
+            </div>
             <p>검색 후 선택하면 상세가 업데이트됩니다.</p>
           </div>
           <label className="search">
@@ -185,7 +188,7 @@ function App() {
 
             <div className="model-stage">
               <div className="body">
-                <div className="body-core" />
+                <img className="body-image" src={bodyImg} alt="인체 모형" />
                 <div className={`region stomach ${activeRegions.includes('stomach') ? 'active' : ''}`}>
                   위
                 </div>

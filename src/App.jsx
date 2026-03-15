@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import bodyImg from './assets/body-hologram.svg'
+import bodyImg from './assets/body-anatomy.svg'
 import './App.css'
 
 const diseases = [
@@ -586,22 +586,34 @@ function App() {
         <section className="center-panel">
           <div className="model-card">
             <div className="model-header">
-              <h2>인체 모형</h2>
-              <p>선택된 항목과 관련된 부위가 강조됩니다.</p>
+              <p className="model-eyebrow">Full Body Mapping</p>
+              <h2>해부 도면</h2>
+              <p>영역을 선택하면 관련 증상이 연결됩니다.</p>
             </div>
 
             <div className="model-stage">
               <div className="body">
                 <img className="body-image" src={bodyImg} alt="인체 모형" />
+                <div className="annotation chest">
+                  <span className="annotation-line" />
+                  <span className="annotation-label">CHEST</span>
+                </div>
+                <div className="annotation abdomen">
+                  <span className="annotation-line" />
+                  <span className="annotation-label">ABDOMEN</span>
+                </div>
+                <div className="annotation lower">
+                  <span className="annotation-line" />
+                  <span className="annotation-label">LOWER EXTREMITIES</span>
+                </div>
                 {regions.map((region) => (
                   <div
                     key={region.id}
                     className={`region ${region.id} ${
                       activeRegions.includes(region.id) ? 'active' : ''
                     }`}
-                  >
-                    {region.label}
-                  </div>
+                    aria-hidden="true"
+                  />
                 ))}
               </div>
               <div className="side-controls">

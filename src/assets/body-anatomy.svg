@@ -1,0 +1,33 @@
+<svg width="520" height="980" viewBox="0 0 520 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bodyShade" x1="0" y1="0" x2="0" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f3f4f6" />
+      <stop offset="0.6" stop-color="#d9dde3" />
+      <stop offset="1" stop-color="#c5cbd4" />
+    </linearGradient>
+    <radialGradient id="softGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 360) rotate(90) scale(300 200)">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#b8c0cc" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect x="210" y="28" width="100" height="110" rx="42" fill="url(#bodyShade)" />
+  <path d="M108 190C108 120 164 72 234 72H286C356 72 412 120 412 190V312C412 382 356 430 286 430H234C164 430 108 382 108 312V190Z" fill="url(#bodyShade)" />
+  <path d="M130 190C130 140 170 106 220 106H300C350 106 390 140 390 190V306C390 356 350 390 300 390H220C170 390 130 356 130 306V190Z" fill="#eef1f5" />
+  <rect x="86" y="196" width="56" height="220" rx="28" fill="url(#bodyShade)" />
+  <rect x="378" y="196" width="56" height="220" rx="28" fill="url(#bodyShade)" />
+  <path d="M150 410C150 372 180 342 218 342H302C340 342 370 372 370 410V640C370 678 340 708 302 708H218C180 708 150 678 150 640V410Z" fill="url(#bodyShade)" />
+  <path d="M170 420C170 388 196 362 228 362H292C324 362 350 388 350 420V622C350 654 324 680 292 680H228C196 680 170 654 170 622V420Z" fill="#eceff4" />
+  <rect x="176" y="690" width="72" height="250" rx="32" fill="url(#bodyShade)" />
+  <rect x="272" y="690" width="72" height="250" rx="32" fill="url(#bodyShade)" />
+
+  <ellipse cx="260" cy="420" rx="140" ry="210" fill="url(#softGlow)" />
+
+  <g opacity="0.35">
+    <path d="M210 220C210 200 310 200 310 220C310 240 210 240 210 220Z" fill="#d6dbe3" />
+    <path d="M190 280C190 260 330 260 330 280C330 300 190 300 190 280Z" fill="#d6dbe3" />
+    <path d="M200 350C200 330 320 330 320 350C320 370 200 370 200 350Z" fill="#d6dbe3" />
+    <path d="M210 430C210 410 310 410 310 430C310 450 210 450 210 430Z" fill="#d6dbe3" />
+    <path d="M210 520C210 500 310 500 310 520C310 540 210 540 210 520Z" fill="#d6dbe3" />
+  </g>
+</svg>

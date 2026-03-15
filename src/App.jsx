@@ -877,7 +877,7 @@ function App() {
   const relatedDiseases = useMemo(() => {
     if (selectedSymptomIds.length === 0) return []
     return diseases.filter((disease) =>
-      selectedSymptomIds.some((symptom) => disease.symptoms.includes(symptom))
+      selectedSymptomIds.every((symptom) => disease.symptoms.includes(symptom))
     )
   }, [selectedSymptomIds])
 
@@ -1024,9 +1024,38 @@ function App() {
         <section className="center-panel">
           <div className="model-card">
             <div className="model-header">
-              <p className="model-eyebrow">Full Body Mapping</p>
-              <h2>해부 도면</h2>
-              <p>영역을 선택하면 관련 증상이 연결됩니다.</p>
+              <div className="model-title-row">
+                <div>
+                  <p className="model-eyebrow">Full Body Mapping</p>
+                  <h2>해부 도면</h2>
+                  <p>영역을 선택하면 관련 증상이 연결됩니다.</p>
+                </div>
+                <div className="mini-controls">
+                  <p>개인 변수</p>
+                  <div className="chips">
+                    {['남성', '여성'].map((label) => (
+                      <button
+                        key={label}
+                        className={`chip ${gender === label ? 'active' : ''}`}
+                        onClick={() => setGender(label)}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="age-grid">
+                    {ageRanges.map((range) => (
+                      <button
+                        key={range}
+                        className={`age ${ageRange === range ? 'active' : ''}`}
+                        onClick={() => setAgeRange(range)}
+                      >
+                        {range}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="model-stage">
@@ -1052,42 +1081,6 @@ function App() {
                     aria-hidden="true"
                   />
                 ))}
-              </div>
-              <div className="side-controls">
-                <div className="control-card">
-                  <p>개인 변수</p>
-                  <div className="chips">
-                    {['남성', '여성'].map((label) => (
-                      <button
-                        key={label}
-                        className={`chip ${gender === label ? 'active' : ''}`}
-                        onClick={() => setGender(label)}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="age-grid">
-                    {ageRanges.map((range) => (
-                      <button
-                        key={range}
-                        className={`age ${ageRange === range ? 'active' : ''}`}
-                        onClick={() => setAgeRange(range)}
-                      >
-                        {range}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="zoom-card">
-                  <h3>확대 분석</h3>
-                  <p>{focusedDisease?.name || '항목을 선택하세요.'}</p>
-                  <ul>
-                    {(focusedDisease?.progression || []).map((step) => (
-                      <li key={step}>{step}</li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>

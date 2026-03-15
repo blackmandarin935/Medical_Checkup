@@ -299,6 +299,7 @@
   border: 3px solid rgba(0, 0, 0, 0.9);
   box-shadow: 0 0 22px rgba(26, 111, 211, 0.4);
   background: rgba(26, 111, 211, 0.18);
+  transform: translate(-50%, -50%);
 }
 
 .body-highlight-label {
@@ -310,6 +311,7 @@
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  transform: translateY(-50%);
 }
 
 .body-highlight-line {

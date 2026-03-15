@@ -844,7 +844,7 @@ function App() {
 
   const rightPanelTitle = searchMode === 'disease' ? '증상' : '질환'
   const leftPanelTitle = searchMode === 'disease' ? '질환' : '증상'
-  const highlightGroup = getHighlightGroup(activeRegions[0])
+  const highlightTargets = getHighlightTargets(activeRegions[0])
 
   return (
     <div className="app">
@@ -980,17 +980,33 @@ function App() {
             <div className="model-stage">
               <div className="body">
                 <img className="body-image" src={bodyImg} alt="인체 모형" />
-                {highlightGroup && (
-                  <div className={`body-highlight ${highlightGroup}`}>
-                    <div className="body-highlight-ring" />
-                    <div className="body-highlight-label">
-                      <span className="body-highlight-line" />
-                      <span className="body-highlight-text">
-                        {highlightGroup.toUpperCase()}
-                      </span>
-                    </div>
+                {highlightTargets.map((target) => (
+                  <div key={target.id} className="body-highlight">
+                    <div
+                      className="body-highlight-ring"
+                      style={{
+                        top: target.top,
+                        left: target.left,
+                        width: target.width,
+                        height: target.height,
+                      }}
+                    />
+                    {target.label && (
+                      <div
+                        className="body-highlight-label"
+                        style={{
+                          top: target.labelTop,
+                          left: target.labelLeft,
+                        }}
+                      >
+                        <span className="body-highlight-line" />
+                        <span className="body-highlight-text">
+                          {target.label}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
                 {regions.map((region) => (
                   <div
                     key={region.id}
@@ -1132,29 +1148,261 @@ function getConditionBoost(diseaseId, gender, ageRange) {
   return score
 }
 
-function getHighlightGroup(regionId) {
-  if (!regionId) return ''
-  if (
-    ['lung', 'heart', 'chest', 'throat', 'neck', 'shoulder', 'spine'].includes(
-      regionId
-    )
-  ) {
-    return 'chest'
+function getHighlightTargets(regionId) {
+  if (!regionId) return []
+
+  const targets = {
+    brain: [{
+      id: 'brain',
+      top: '16%',
+      left: '50%',
+      width: '120px',
+      height: '150px',
+      label: 'HEAD',
+      labelTop: '16%',
+      labelLeft: '70%',
+    }],
+    head: [{
+      id: 'head',
+      top: '16%',
+      left: '50%',
+      width: '120px',
+      height: '150px',
+      label: 'HEAD',
+      labelTop: '16%',
+      labelLeft: '70%',
+    }],
+    eye: [{
+      id: 'eye',
+      top: '18%',
+      left: '50%',
+      width: '110px',
+      height: '90px',
+      label: 'HEAD',
+      labelTop: '18%',
+      labelLeft: '70%',
+    }],
+    ear: [{
+      id: 'ear',
+      top: '19%',
+      left: '50%',
+      width: '110px',
+      height: '90px',
+      label: 'HEAD',
+      labelTop: '19%',
+      labelLeft: '70%',
+    }],
+    jaw: [{
+      id: 'jaw',
+      top: '24%',
+      left: '50%',
+      width: '120px',
+      height: '110px',
+      label: 'JAW',
+      labelTop: '24%',
+      labelLeft: '70%',
+    }],
+    throat: [{
+      id: 'throat',
+      top: '28%',
+      left: '50%',
+      width: '110px',
+      height: '130px',
+      label: 'THROAT',
+      labelTop: '28%',
+      labelLeft: '70%',
+    }],
+    neck: [{
+      id: 'neck',
+      top: '28%',
+      left: '50%',
+      width: '110px',
+      height: '130px',
+      label: 'NECK',
+      labelTop: '28%',
+      labelLeft: '70%',
+    }],
+    lung: [
+      {
+        id: 'lung-left',
+        top: '36%',
+        left: '44%',
+        width: '120px',
+        height: '160px',
+      },
+      {
+        id: 'lung-right',
+        top: '36%',
+        left: '56%',
+        width: '120px',
+        height: '160px',
+        label: 'LUNGS',
+        labelTop: '36%',
+        labelLeft: '70%',
+      },
+    ],
+    heart: [{
+      id: 'heart',
+      top: '39%',
+      left: '50%',
+      width: '120px',
+      height: '150px',
+      label: 'HEART',
+      labelTop: '39%',
+      labelLeft: '70%',
+    }],
+    chest: [{
+      id: 'chest',
+      top: '36%',
+      left: '50%',
+      width: '220px',
+      height: '200px',
+      label: 'CHEST',
+      labelTop: '36%',
+      labelLeft: '70%',
+    }],
+    stomach: [{
+      id: 'stomach',
+      top: '48%',
+      left: '50%',
+      width: '140px',
+      height: '140px',
+      label: 'STOMACH',
+      labelTop: '48%',
+      labelLeft: '70%',
+    }],
+    liver: [{
+      id: 'liver',
+      top: '47%',
+      left: '55%',
+      width: '150px',
+      height: '120px',
+      label: 'LIVER',
+      labelTop: '47%',
+      labelLeft: '70%',
+    }],
+    pancreas: [{
+      id: 'pancreas',
+      top: '52%',
+      left: '50%',
+      width: '140px',
+      height: '120px',
+      label: 'PANCREAS',
+      labelTop: '52%',
+      labelLeft: '70%',
+    }],
+    intestine: [{
+      id: 'intestine',
+      top: '62%',
+      left: '50%',
+      width: '180px',
+      height: '200px',
+      label: 'ABDOMEN',
+      labelTop: '62%',
+      labelLeft: '70%',
+    }],
+    kidney: [
+      {
+        id: 'kidney-left',
+        top: '50%',
+        left: '43%',
+        width: '110px',
+        height: '130px',
+      },
+      {
+        id: 'kidney-right',
+        top: '50%',
+        left: '57%',
+        width: '110px',
+        height: '130px',
+        label: 'KIDNEY',
+        labelTop: '50%',
+        labelLeft: '70%',
+      },
+    ],
+    pelvis: [{
+      id: 'pelvis',
+      top: '74%',
+      left: '50%',
+      width: '160px',
+      height: '150px',
+      label: 'PELVIS',
+      labelTop: '74%',
+      labelLeft: '70%',
+    }],
+    spine: [{
+      id: 'spine',
+      top: '42%',
+      left: '50%',
+      width: '120px',
+      height: '220px',
+      label: 'SPINE',
+      labelTop: '42%',
+      labelLeft: '70%',
+    }],
+    shoulder: [{
+      id: 'shoulder',
+      top: '31%',
+      left: '34%',
+      width: '120px',
+      height: '120px',
+      label: 'SHOULDER',
+      labelTop: '31%',
+      labelLeft: '70%',
+    }],
+    elbow: [{
+      id: 'elbow',
+      top: '55%',
+      left: '24%',
+      width: '120px',
+      height: '120px',
+      label: 'ELBOW',
+      labelTop: '55%',
+      labelLeft: '70%',
+    }],
+    wrist: [{
+      id: 'wrist',
+      top: '74%',
+      left: '20%',
+      width: '120px',
+      height: '120px',
+      label: 'WRIST',
+      labelTop: '74%',
+      labelLeft: '70%',
+    }],
+    skin: [{
+      id: 'skin',
+      top: '48%',
+      left: '50%',
+      width: '280px',
+      height: '360px',
+      label: 'SKIN',
+      labelTop: '48%',
+      labelLeft: '70%',
+    }],
+    blood: [{
+      id: 'blood',
+      top: '38%',
+      left: '50%',
+      width: '220px',
+      height: '200px',
+      label: 'BLOOD',
+      labelTop: '38%',
+      labelLeft: '70%',
+    }],
+    body: [{
+      id: 'body',
+      top: '52%',
+      left: '50%',
+      width: '320px',
+      height: '420px',
+      label: 'BODY',
+      labelTop: '52%',
+      labelLeft: '70%',
+    }],
   }
-  if (
-    ['stomach', 'liver', 'pancreas', 'intestine', 'kidney', 'pelvis'].includes(
-      regionId
-    )
-  ) {
-    return 'abdomen'
-  }
-  if (['hip', 'knee', 'ankle', 'leg'].includes(regionId)) {
-    return 'lower'
-  }
-  if (['brain', 'head', 'eye', 'ear', 'jaw'].includes(regionId)) {
-    return 'head'
-  }
-  return ''
+
+  return targets[regionId] || []
 }
 
 function getConditionCare(disease, type, gender, ageRange) {

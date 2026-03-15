@@ -1151,6 +1151,21 @@ function getConditionBoost(diseaseId, gender, ageRange) {
 function getHighlightTargets(regionId) {
   if (!regionId) return []
 
+  const yOffset = 3.5
+  const scale = 0.5
+  const applyOffset = (value, offset = yOffset) => {
+    if (!value || !value.endsWith('%')) return value
+    const num = Number.parseFloat(value)
+    if (Number.isNaN(num)) return value
+    return `${num + offset}%`
+  }
+  const applyScale = (value, factor = scale) => {
+    if (!value || !value.endsWith('px')) return value
+    const num = Number.parseFloat(value)
+    if (Number.isNaN(num)) return value
+    return `${Math.max(24, num * factor)}px`
+  }
+
   const targets = {
     brain: [{
       id: 'brain',
@@ -1402,7 +1417,13 @@ function getHighlightTargets(regionId) {
     }],
   }
 
-  return targets[regionId] || []
+  return (targets[regionId] || []).map((target) => ({
+    ...target,
+    top: applyOffset(target.top),
+    labelTop: applyOffset(target.labelTop),
+    width: applyScale(target.width),
+    height: applyScale(target.height),
+  }))
 }
 
 function getConditionCare(disease, type, gender, ageRange) {

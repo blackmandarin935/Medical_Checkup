@@ -908,6 +908,12 @@ function App() {
             />
           </label>
 
+          {searchMode === 'symptom' && selectedSymptomIds.length > 0 && (
+            <button className="clear-selection" onClick={() => setSelectedSymptomIds([])}>
+              증상 선택 모두 해제
+            </button>
+          )}
+
           {searchMode === 'symptom' && (
             <div className="selection-hint">
               여러 증상을 선택할 수 있습니다.

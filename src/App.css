@@ -183,7 +183,7 @@
 }
 
 .model-card {
-  background: radial-gradient(circle at 30% 20%, #f7f9fc, #eef2f7);
+  background: radial-gradient(circle at 30% 20%, #f7f9fc, #edf1f6);
   border-radius: 24px;
   border: 1px solid var(--line);
   padding: 24px;
@@ -219,7 +219,7 @@
 
 .body {
   height: 420px;
-  background: radial-gradient(circle at top, #f8fafc, #edf2f7 60%, #e8eef5);
+  background: #f3f5f9;
   border-radius: 32px;
   border: 1px solid #dde5ef;
   position: relative;
@@ -230,62 +230,102 @@
 }
 
 .body-image {
-  width: min(320px, 72%);
+  width: min(360px, 78%);
   height: auto;
-  filter: drop-shadow(0 22px 28px rgba(24, 32, 46, 0.2));
-  opacity: 0.98;
+  filter: drop-shadow(0 16px 24px rgba(16, 24, 40, 0.18));
+  opacity: 1;
 }
 
 .region {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
-  background: rgba(70, 150, 255, 0.2);
-  border: 1px solid rgba(70, 150, 255, 0.25);
-  opacity: 0.2;
-  transition: all 0.35s ease;
+  background: rgba(41, 96, 255, 0.18);
+  border: 1px solid rgba(41, 96, 255, 0.2);
+  opacity: 0.1;
+  transition: opacity 0.35s ease;
 }
 
 .region.active {
-  width: 46px;
-  height: 46px;
-  opacity: 1;
-  background: radial-gradient(circle, rgba(52, 130, 255, 0.85), rgba(52, 130, 255, 0.15));
-  border-color: rgba(52, 130, 255, 0.75);
-  box-shadow: 0 0 32px rgba(52, 130, 255, 0.45);
+  opacity: 0.25;
 }
 
-.annotation {
+.body-highlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.body-highlight-ring {
+  position: absolute;
+  width: 80px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid rgba(35, 120, 255, 0.9);
+  box-shadow: 0 0 18px rgba(35, 120, 255, 0.3);
+  background: rgba(35, 120, 255, 0.12);
+}
+
+.body-highlight-label {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #9aa7b3;
+  gap: 10px;
+  color: #7c8da3;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.annotation-line {
-  width: 60px;
+.body-highlight-line {
+  width: 64px;
   height: 1px;
-  background: #c9d2df;
+  background: #b9c3d3;
 }
 
-.annotation.chest {
+.body-highlight.chest .body-highlight-ring {
   top: 28%;
-  right: 16px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.annotation.abdomen {
+.body-highlight.chest .body-highlight-label {
+  top: 28%;
+  right: 18px;
+}
+
+.body-highlight.abdomen .body-highlight-ring {
   top: 48%;
-  right: 16px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.annotation.lower {
-  top: 78%;
-  right: 16px;
+.body-highlight.abdomen .body-highlight-label {
+  top: 48%;
+  right: 18px;
+}
+
+.body-highlight.lower .body-highlight-ring {
+  top: 72%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.body-highlight.lower .body-highlight-label {
+  top: 72%;
+  right: 18px;
+}
+
+.body-highlight.head .body-highlight-ring {
+  top: 16%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.body-highlight.head .body-highlight-label {
+  top: 16%;
+  right: 18px;
 }
 
 .region.stomach {

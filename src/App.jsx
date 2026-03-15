@@ -488,6 +488,7 @@ function App() {
 
   const rightPanelTitle = searchMode === 'disease' ? '증상' : '질환'
   const leftPanelTitle = searchMode === 'disease' ? '질환' : '증상'
+  const highlightGroup = getHighlightGroup(activeRegions[0])
 
   return (
     <div className="app">
@@ -594,18 +595,17 @@ function App() {
             <div className="model-stage">
               <div className="body">
                 <img className="body-image" src={bodyImg} alt="인체 모형" />
-                <div className="annotation chest">
-                  <span className="annotation-line" />
-                  <span className="annotation-label">CHEST</span>
-                </div>
-                <div className="annotation abdomen">
-                  <span className="annotation-line" />
-                  <span className="annotation-label">ABDOMEN</span>
-                </div>
-                <div className="annotation lower">
-                  <span className="annotation-line" />
-                  <span className="annotation-label">LOWER EXTREMITIES</span>
-                </div>
+                {highlightGroup && (
+                  <div className={`body-highlight ${highlightGroup}`}>
+                    <div className="body-highlight-ring" />
+                    <div className="body-highlight-label">
+                      <span className="body-highlight-line" />
+                      <span className="body-highlight-text">
+                        {highlightGroup.toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+                )}
                 {regions.map((region) => (
                   <div
                     key={region.id}
@@ -776,6 +776,31 @@ function getPriorityLabel(disease, gender, ageRange) {
     return '우선'
   }
   return '관련'
+}
+
+function getHighlightGroup(regionId) {
+  if (!regionId) return ''
+  if (
+    ['lung', 'heart', 'chest', 'throat', 'neck', 'shoulder', 'spine'].includes(
+      regionId
+    )
+  ) {
+    return 'chest'
+  }
+  if (
+    ['stomach', 'liver', 'pancreas', 'intestine', 'kidney', 'pelvis'].includes(
+      regionId
+    )
+  ) {
+    return 'abdomen'
+  }
+  if (['hip', 'knee', 'ankle', 'leg'].includes(regionId)) {
+    return 'lower'
+  }
+  if (['brain', 'head', 'eye', 'ear', 'jaw'].includes(regionId)) {
+    return 'head'
+  }
+  return ''
 }
 
 export default App

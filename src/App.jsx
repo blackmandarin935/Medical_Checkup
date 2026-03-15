@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import bodyImg from './assets/body-realistic.png'
+import bodyImg from './assets/body-hologram.svg'
 import './App.css'
 
 const diseases = [
@@ -365,6 +365,30 @@ const diseases = [
   },
 ]
 
+const diseasePriorityByAge = {
+  '0-12': ['otitis', 'tonsillitis', 'asthma', 'dermatitis', 'eczema', 'conjunctivitis', 'allergic_rhinitis', 'constipation', 'flu'],
+  '13-24': ['migraine', 'asthma', 'allergic_rhinitis', 'dermatitis', 'eczema', 'gastritis'],
+  '25-39': ['reflux', 'ibs', 'migraine', 'gastritis', 'sinusitis'],
+  '40-59': ['hypertension', 'angina', 'fatty_liver', 'diabetes', 'lumbar_pain', 'cervical_pain'],
+  '60+': ['hypertension', 'angina', 'arthritis', 'gout', 'kidney_stone', 'pneumonia'],
+}
+
+const diseasePriorityByGender = {
+  남성: ['gout', 'hypertension', 'angina', 'kidney_stone'],
+  여성: ['cystitis', 'thyroiditis', 'anemia'],
+}
+
+const symptomModifiers = {
+  age: {
+    '0-12': ['호흡 곤란', '고열', '식욕 저하'],
+    '60+': ['체력 저하', '탈수 위험', '만성 피로'],
+  },
+  gender: {
+    여성: ['어지럼', '피로감'],
+    남성: ['가슴 답답함'],
+  },
+}
+
 const regions = [
   { id: 'brain', label: '뇌' },
   { id: 'eye', label: '눈' },
@@ -429,6 +453,19 @@ function App() {
     )
   }, [selectedSymptomIds])
 
+  const demographicRankedDiseases = useMemo(() => {
+    const ageBoost = diseasePriorityByAge[ageRange] || []
+    const genderBoost = diseasePriorityByGender[gender] || []
+    return relatedDiseases
+      .map((disease) => {
+        const score =
+          (ageBoost.includes(disease.id) ? 2 : 0) +
+          (genderBoost.includes(disease.id) ? 1 : 0)
+        return { ...disease, _score: score }
+      })
+      .sort((a, b) => b._score - a._score || a.name.localeCompare(b.name))
+  }, [relatedDiseases, ageRange, gender])
+
   const focusedDisease = useMemo(() => {
     if (searchMode === 'disease') return selectedDisease
     if (selectedDiseaseId) {
@@ -441,11 +478,13 @@ function App() {
     if (searchMode === 'disease' && selectedDisease) {
       return [selectedDisease.region]
     }
-    if (searchMode === 'symptom' && relatedDiseases.length > 0) {
-      return Array.from(new Set(relatedDiseases.map((disease) => disease.region)))
+    if (searchMode === 'symptom' && demographicRankedDiseases.length > 0) {
+      return Array.from(
+        new Set(demographicRankedDiseases.map((disease) => disease.region))
+      )
     }
     return []
-  }, [searchMode, selectedDisease, relatedDiseases])
+  }, [searchMode, selectedDisease, demographicRankedDiseases])
 
   const rightPanelTitle = searchMode === 'disease' ? '증상' : '질환'
   const leftPanelTitle = searchMode === 'disease' ? '질환' : '증상'
@@ -514,7 +553,7 @@ function App() {
                       ? item.id === selectedDiseaseId
                         ? 'active'
                         : ''
-                      : item.id === selectedSymptomId
+                      : selectedSymptomIds.includes(item.id)
                         ? 'active'
                         : ''
                   }`}
@@ -569,16 +608,16 @@ function App() {
                 <div className="control-card">
                   <p>개인 변수</p>
                   <div className="chips">
-            {['남성', '여성'].map((label) => (
-              <button
-                key={label}
-                className={`chip ${gender === label ? 'active' : ''}`}
-                onClick={() => setGender(label)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+                    {['남성', '여성'].map((label) => (
+                      <button
+                        key={label}
+                        className={`chip ${gender === label ? 'active' : ''}`}
+                        onClick={() => setGender(label)}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                   <div className="age-grid">
                     {ageRanges.map((range) => (
                       <button
@@ -613,14 +652,16 @@ function App() {
 
           <div className="list">
             {searchMode === 'disease' && selectedDisease ? (
-              selectedDisease.symptoms.map((symptom) => (
+              getDemographicSymptoms(selectedDisease.symptoms, gender, ageRange).map(
+                (symptom) => (
                 <div key={symptom} className="list-item static">
                   <span>{symptom}</span>
                   <span className="tag">증상</span>
                 </div>
-              ))
-            ) : relatedDiseases.length > 0 ? (
-              relatedDiseases.map((disease) => (
+                )
+              )
+            ) : demographicRankedDiseases.length > 0 ? (
+              demographicRankedDiseases.map((disease) => (
                 <button
                   key={disease.id}
                   className={`list-item ${
@@ -629,7 +670,9 @@ function App() {
                   onClick={() => setSelectedDiseaseId(disease.id)}
                 >
                   <span>{disease.name}</span>
-                  <span className="badge">관련</span>
+                  <span className="badge">
+                    {getPriorityLabel(disease, gender, ageRange)}
+                  </span>
                 </button>
               ))
             ) : (
@@ -669,6 +712,7 @@ function App() {
 
 function getCareModifiers(type, gender, ageRange) {
   const modifiers = []
+  if (!gender && !ageRange) return modifiers
   if (gender === '여성') {
     if (type === 'treatments') {
       modifiers.push('임신 가능성 및 호르몬 영향 고려')
@@ -699,6 +743,27 @@ function getCareModifiers(type, gender, ageRange) {
     }
   }
   return modifiers
+}
+
+function getDemographicSymptoms(baseSymptoms, gender, ageRange) {
+  const extras = []
+  if (ageRange && symptomModifiers.age[ageRange]) {
+    extras.push(...symptomModifiers.age[ageRange])
+  }
+  if (gender && symptomModifiers.gender[gender]) {
+    extras.push(...symptomModifiers.gender[gender])
+  }
+  const combined = baseSymptoms.concat(extras)
+  return Array.from(new Set(combined))
+}
+
+function getPriorityLabel(disease, gender, ageRange) {
+  const ageBoost = diseasePriorityByAge[ageRange] || []
+  const genderBoost = diseasePriorityByGender[gender] || []
+  if (ageBoost.includes(disease.id) || genderBoost.includes(disease.id)) {
+    return '우선'
+  }
+  return '관련'
 }
 
 export default App

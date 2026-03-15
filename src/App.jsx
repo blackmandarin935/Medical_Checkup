@@ -389,6 +389,434 @@ const symptomModifiers = {
   },
 }
 
+const conditionModifiers = {
+  gastritis: {
+    age: {
+      '0-12': {
+        symptoms: ['구토 빈도 증가', '탈수 위험'],
+        treatments: ['경구 수분 보충 우선'],
+      },
+      '60+': {
+        symptoms: ['식욕 저하 두드러짐'],
+        treatments: ['약물 부작용 모니터링'],
+      },
+      '25-39': {
+        prevention: ['야식 제한과 스트레스 관리'],
+      },
+    },
+  },
+  pneumonia: {
+    age: {
+      '0-12': {
+        symptoms: ['호흡수 증가', '흉벽 함몰'],
+        treatments: ['소아 진료 우선'],
+      },
+      '60+': {
+        symptoms: ['식욕 저하와 탈수 동반 가능'],
+        treatments: ['호흡 재활 병행'],
+      },
+    },
+  },
+  arthritis: {
+    age: {
+      '40-59': {
+        treatments: ['체중 관리와 관절 보호'],
+      },
+      '60+': {
+        symptoms: ['아침 강직 지속'],
+        treatments: ['관절 보조기 활용'],
+      },
+    },
+  },
+  hypertension: {
+    age: {
+      '40-59': {
+        prevention: ['심혈관 검진 주기 단축'],
+      },
+      '60+': {
+        treatments: ['혈압 하강 시 어지럼 모니터링'],
+        prevention: ['낙상 예방 동반'],
+      },
+    },
+  },
+  angina: {
+    gender: {
+      여성: {
+        symptoms: ['비전형적 흉부 불편 가능'],
+      },
+    },
+    age: {
+      '60+': {
+        treatments: ['심혈관 합병증 평가'],
+      },
+    },
+  },
+  asthma: {
+    age: {
+      '0-12': {
+        symptoms: ['야간 기침 빈도 증가'],
+        treatments: ['흡입기 사용 교육'],
+      },
+      '60+': {
+        symptoms: ['운동 시 숨참 증가'],
+      },
+    },
+  },
+  bronchitis: {
+    age: {
+      '0-12': {
+        symptoms: ['쌕쌕거림 동반'],
+      },
+      '60+': {
+        treatments: ['호흡기 합병증 관찰'],
+      },
+    },
+  },
+  migraine: {
+    gender: {
+      여성: {
+        symptoms: ['월경 주기 연관 가능'],
+        prevention: ['주기별 트리거 기록'],
+      },
+    },
+    age: {
+      '13-24': {
+        prevention: ['수면 불규칙 교정'],
+      },
+    },
+  },
+  sinusitis: {
+    age: {
+      '0-12': {
+        symptoms: ['코막힘 지속', '후비루 증가'],
+        treatments: ['비강 세척 강화'],
+      },
+    },
+  },
+  conjunctivitis: {
+    age: {
+      '0-12': {
+        prevention: ['손 위생과 접촉 차단'],
+      },
+    },
+  },
+  otitis: {
+    age: {
+      '0-12': {
+        treatments: ['경과 관찰 및 재검'],
+        prevention: ['감기 관리 강화'],
+      },
+    },
+  },
+  tonsillitis: {
+    age: {
+      '0-12': {
+        symptoms: ['삼킴 곤란 증가'],
+        treatments: ['수분 섭취 집중'],
+      },
+    },
+  },
+  ulcer: {
+    age: {
+      '60+': {
+        treatments: ['NSAIDs 복용 여부 확인'],
+      },
+      '40-59': {
+        prevention: ['헬리코박터 검사 고려'],
+      },
+    },
+  },
+  ibs: {
+    gender: {
+      여성: {
+        symptoms: ['복부 팽만감 증가'],
+      },
+    },
+    age: {
+      '13-24': {
+        prevention: ['스트레스 요인 관리'],
+      },
+    },
+  },
+  colitis: {
+    age: {
+      '60+': {
+        treatments: ['탈수 모니터링'],
+      },
+    },
+  },
+  fatty_liver: {
+    gender: {
+      남성: {
+        prevention: ['음주량 점검 강화'],
+      },
+    },
+    age: {
+      '40-59': {
+        prevention: ['대사질환 동시 관리'],
+      },
+    },
+  },
+  hepatitis: {
+    age: {
+      '0-12': {
+        prevention: ['예방 접종 확인'],
+      },
+      '60+': {
+        treatments: ['간기능 수치 모니터링'],
+      },
+    },
+  },
+  kidney_stone: {
+    gender: {
+      남성: {
+        prevention: ['수분 섭취량 유지'],
+      },
+    },
+    age: {
+      '60+': {
+        treatments: ['신기능 확인'],
+      },
+    },
+  },
+  cystitis: {
+    gender: {
+      여성: {
+        symptoms: ['하복부 불편', '배뇨 후 잔여감 증가'],
+        treatments: ['수분 섭취량 증가 권장'],
+        prevention: ['배뇨 후 위생 관리 강화'],
+      },
+      남성: {
+        symptoms: ['전립선 관련 불편 가능성'],
+        treatments: ['전립선 동반 평가'],
+        prevention: ['장시간 앉기 줄이기'],
+      },
+    },
+  },
+  anemia: {
+    gender: {
+      여성: {
+        symptoms: ['월경량 변화 동반 가능'],
+        treatments: ['철분 보충 시 월경 주기 확인'],
+        prevention: ['철분/엽산 섭취 강화'],
+      },
+    },
+    age: {
+      '0-12': {
+        symptoms: ['성장 지연 가능'],
+        treatments: ['영양 보충 강화'],
+      },
+      '60+': {
+        treatments: ['만성 질환 동반 평가'],
+      },
+    },
+  },
+  diabetes: {
+    age: {
+      '60+': {
+        symptoms: ['감각 저하 및 상처 회복 지연'],
+        prevention: ['발 관리 및 상처 확인'],
+      },
+      '40-59': {
+        prevention: ['체중 및 혈당 모니터링 강화'],
+      },
+    },
+  },
+  gout: {
+    gender: {
+      남성: {
+        symptoms: ['엄지발가락 관절 통증 흔함'],
+        prevention: ['알코올 섭취 제한 강화'],
+      },
+      여성: {
+        prevention: ['폐경 이후 요산 관리'],
+      },
+    },
+    age: {
+      '40-59': {
+        prevention: ['퓨린 섭취 점검'],
+      },
+    },
+  },
+  osteoporosis: {
+    gender: {
+      여성: {
+        prevention: ['폐경 이후 골밀도 검사'],
+      },
+    },
+    age: {
+      '60+': {
+        prevention: ['낙상 예방 운동'],
+      },
+    },
+  },
+  thyroiditis: {
+    gender: {
+      여성: {
+        symptoms: ['피로와 체중 변화 뚜렷'],
+        treatments: ['호르몬 수치 모니터링'],
+      },
+    },
+    age: {
+      '25-39': {
+        treatments: ['증상 기록 및 추적'],
+      },
+    },
+  },
+  dermatitis: {
+    age: {
+      '0-12': {
+        symptoms: ['팔/다리 굴곡 부위 악화'],
+        treatments: ['보습 집중 적용'],
+      },
+    },
+  },
+  eczema: {
+    age: {
+      '0-12': {
+        symptoms: ['야간 가려움 증가'],
+        prevention: ['실내 습도 유지'],
+      },
+    },
+  },
+  urticaria: {
+    age: {
+      '13-24': {
+        prevention: ['알레르겐 추적 기록'],
+      },
+    },
+  },
+  lumbar_pain: {
+    age: {
+      '25-39': {
+        prevention: ['장시간 앉기 제한'],
+      },
+      '60+': {
+        treatments: ['골밀도 확인'],
+      },
+    },
+  },
+  cervical_pain: {
+    age: {
+      '13-24': {
+        prevention: ['스마트폰 사용 자세 교정'],
+      },
+      '25-39': {
+        treatments: ['근막 이완 스트레칭'],
+      },
+    },
+  },
+  shoulder_impingement: {
+    age: {
+      '40-59': {
+        treatments: ['회전근개 스트레칭'],
+      },
+    },
+  },
+  tennis_elbow: {
+    age: {
+      '25-39': {
+        prevention: ['반복 작업 중 휴식'],
+      },
+    },
+  },
+  carpal_tunnel: {
+    gender: {
+      여성: {
+        treatments: ['손목 보조기 사용'],
+      },
+    },
+    age: {
+      '40-59': {
+        prevention: ['손목 부담 동작 감소'],
+      },
+    },
+  },
+  hip_arthritis: {
+    age: {
+      '60+': {
+        treatments: ['보행 보조기 고려'],
+      },
+    },
+  },
+  ankle_sprain: {
+    age: {
+      '13-24': {
+        prevention: ['운동 전 테이핑 고려'],
+      },
+    },
+  },
+  allergic_rhinitis: {
+    age: {
+      '13-24': {
+        prevention: ['계절 알레르겐 회피'],
+      },
+    },
+  },
+  appendicitis: {
+    age: {
+      '13-24': {
+        symptoms: ['우하복부 통증 급증'],
+      },
+      '60+': {
+        symptoms: ['통증 위치 모호'],
+      },
+    },
+  },
+  gallstone: {
+    gender: {
+      여성: {
+        symptoms: ['지방 음식 후 통증 증가'],
+      },
+    },
+    age: {
+      '40-59': {
+        prevention: ['체중 급변 피하기'],
+      },
+    },
+  },
+  pancreatitis: {
+    age: {
+      '40-59': {
+        prevention: ['음주 습관 점검'],
+      },
+    },
+  },
+  constipation: {
+    age: {
+      '0-12': {
+        prevention: ['배변 습관 교육'],
+      },
+      '60+': {
+        treatments: ['복용 약물 영향 확인'],
+      },
+    },
+  },
+  flu: {
+    age: {
+      '0-12': {
+        symptoms: ['급성 고열 지속'],
+      },
+      '60+': {
+        treatments: ['합병증 모니터링'],
+      },
+    },
+  },
+  reflux: {
+    age: {
+      '0-12': {
+        symptoms: ['수유 후 역류 빈도'],
+      },
+      '25-39': {
+        treatments: ['식사 시간 분산'],
+      },
+      '60+': {
+        prevention: ['야간 흡인 위험 주의'],
+      },
+    },
+  },
+}
+
 const regions = [
   { id: 'brain', label: '뇌' },
   { id: 'eye', label: '눈' },
@@ -458,13 +886,22 @@ function App() {
     const genderBoost = diseasePriorityByGender[gender] || []
     return relatedDiseases
       .map((disease) => {
+        const matchScore = getSymptomMatchScore(disease, selectedSymptomIds)
+        const conditionBoost = getConditionBoost(disease.id, gender, ageRange)
         const score =
+          matchScore * 2 +
+          conditionBoost +
           (ageBoost.includes(disease.id) ? 2 : 0) +
           (genderBoost.includes(disease.id) ? 1 : 0)
-        return { ...disease, _score: score }
+        return { ...disease, _score: score, _matchScore: matchScore }
       })
-      .sort((a, b) => b._score - a._score || a.name.localeCompare(b.name))
-  }, [relatedDiseases, ageRange, gender])
+      .sort(
+        (a, b) =>
+          b._score - a._score ||
+          b._matchScore - a._matchScore ||
+          a.name.localeCompare(b.name)
+      )
+  }, [relatedDiseases, ageRange, gender, selectedSymptomIds])
 
   const focusedDisease = useMemo(() => {
     if (searchMode === 'disease') return selectedDisease
@@ -664,7 +1101,12 @@ function App() {
 
           <div className="list">
             {searchMode === 'disease' && selectedDisease ? (
-              getDemographicSymptoms(selectedDisease.symptoms, gender, ageRange).map(
+              getDemographicSymptoms(
+                selectedDisease.symptoms,
+                gender,
+                ageRange,
+                selectedDisease.id
+              ).map(
                 (symptom) => (
                 <div key={symptom} className="list-item static">
                   <span>{symptom}</span>
@@ -698,8 +1140,12 @@ function App() {
             <div>
               <h3>치료법</h3>
               <ul>
-                {(focusedDisease?.treatments || [])
-                  .concat(getCareModifiers('treatments', gender, ageRange))
+                {getConditionCare(
+                  focusedDisease,
+                  'treatments',
+                  gender,
+                  ageRange
+                )
                   .map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -708,8 +1154,12 @@ function App() {
             <div>
               <h3>예방법</h3>
               <ul>
-                {(focusedDisease?.prevention || [])
-                  .concat(getCareModifiers('prevention', gender, ageRange))
+                {getConditionCare(
+                  focusedDisease,
+                  'prevention',
+                  gender,
+                  ageRange
+                )
                   .map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -722,48 +1172,22 @@ function App() {
   )
 }
 
-function getCareModifiers(type, gender, ageRange) {
-  const modifiers = []
-  if (!gender && !ageRange) return modifiers
-  if (gender === '여성') {
-    if (type === 'treatments') {
-      modifiers.push('임신 가능성 및 호르몬 영향 고려')
-    }
-    if (type === 'prevention') {
-      modifiers.push('월경/호르몬 변화 시 증상 기록')
-    }
-  }
-  if (gender === '남성') {
-    if (type === 'prevention') {
-      modifiers.push('심혈관 위험 요인 점검')
-    }
-  }
-  if (ageRange === '0-12') {
-    if (type === 'treatments') {
-      modifiers.push('소아 용량 및 복약 안전성 확인')
-    }
-    if (type === 'prevention') {
-      modifiers.push('보호자 관찰 및 예방 접종 확인')
-    }
-  }
-  if (ageRange === '60+') {
-    if (type === 'treatments') {
-      modifiers.push('동반 질환 및 약물 상호작용 점검')
-    }
-    if (type === 'prevention') {
-      modifiers.push('낙상 예방과 규칙적 검사')
-    }
-  }
-  return modifiers
-}
-
-function getDemographicSymptoms(baseSymptoms, gender, ageRange) {
+function getDemographicSymptoms(baseSymptoms, gender, ageRange, diseaseId) {
   const extras = []
   if (ageRange && symptomModifiers.age[ageRange]) {
     extras.push(...symptomModifiers.age[ageRange])
   }
   if (gender && symptomModifiers.gender[gender]) {
     extras.push(...symptomModifiers.gender[gender])
+  }
+  if (diseaseId) {
+    const condition = conditionModifiers[diseaseId]
+    if (condition?.age?.[ageRange]?.symptoms) {
+      extras.push(...condition.age[ageRange].symptoms)
+    }
+    if (condition?.gender?.[gender]?.symptoms) {
+      extras.push(...condition.gender[gender].symptoms)
+    }
   }
   const combined = baseSymptoms.concat(extras)
   return Array.from(new Set(combined))
@@ -776,6 +1200,24 @@ function getPriorityLabel(disease, gender, ageRange) {
     return '우선'
   }
   return '관련'
+}
+
+function getSymptomMatchScore(disease, selectedSymptoms) {
+  if (!selectedSymptoms || selectedSymptoms.length === 0) return 0
+  return selectedSymptoms.filter((symptom) => disease.symptoms.includes(symptom))
+    .length
+}
+
+function getConditionBoost(diseaseId, gender, ageRange) {
+  const condition = conditionModifiers[diseaseId]
+  let score = 0
+  if (condition?.age?.[ageRange]) {
+    score += 1
+  }
+  if (condition?.gender?.[gender]) {
+    score += 1
+  }
+  return score
 }
 
 function getHighlightGroup(regionId) {
@@ -801,6 +1243,20 @@ function getHighlightGroup(regionId) {
     return 'head'
   }
   return ''
+}
+
+function getConditionCare(disease, type, gender, ageRange) {
+  if (!disease) return []
+  const base = disease[type] || []
+  const extras = []
+  const condition = conditionModifiers[disease.id]
+  if (condition?.age?.[ageRange]?.[type]) {
+    extras.push(...condition.age[ageRange][type])
+  }
+  if (condition?.gender?.[gender]?.[type]) {
+    extras.push(...condition.gender[gender][type])
+  }
+  return base.concat(extras)
 }
 
 export default App

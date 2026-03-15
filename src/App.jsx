@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import bodyImg from './assets/body-anatomy.svg'
+import bodyImg from './assets/body-realistic-3d.svg'
 import './App.css'
 
 const diseases = [

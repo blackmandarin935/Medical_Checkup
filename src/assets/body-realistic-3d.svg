@@ -1,0 +1,40 @@
+<svg width="520" height="980" viewBox="0 0 520 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f1f1f1" />
+      <stop offset="0.5" stop-color="#d8dbe0" />
+      <stop offset="1" stop-color="#b7bcc6" />
+    </linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="0" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f7f7" />
+      <stop offset="1" stop-color="#c9ced6" />
+    </linearGradient>
+    <radialGradient id="shadow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 360) rotate(90) scale(320 180)">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#9aa1ab" stop-opacity="0.1" />
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="260" cy="980" rx="170" ry="24" fill="#d6dbe2" opacity="0.35" />
+
+  <rect x="220" y="26" width="80" height="98" rx="36" fill="url(#skin)" />
+  <path d="M118 188C118 120 174 70 242 70H278C346 70 402 120 402 188V318C402 386 346 436 278 436H242C174 436 118 386 118 318V188Z" fill="url(#skin)" />
+  <path d="M138 188C138 146 174 114 216 114H304C346 114 382 146 382 188V304C382 346 346 378 304 378H216C174 378 138 346 138 304V188Z" fill="url(#muscle)" />
+
+  <path d="M84 210C84 182 108 162 136 162H150C178 162 202 182 202 210V410C202 438 178 458 150 458H136C108 458 84 438 84 410V210Z" fill="url(#skin)" />
+  <path d="M318 210C318 182 342 162 370 162H384C412 162 436 182 436 210V410C436 438 412 458 384 458H370C342 458 318 438 318 410V210Z" fill="url(#skin)" />
+
+  <path d="M148 410C148 372 178 342 216 342H304C342 342 372 372 372 410V648C372 686 342 716 304 716H216C178 716 148 686 148 648V410Z" fill="url(#skin)" />
+  <path d="M168 420C168 388 194 362 226 362H294C326 362 352 388 352 420V626C352 658 326 684 294 684H226C194 684 168 658 168 626V420Z" fill="url(#muscle)" />
+
+  <rect x="176" y="690" width="72" height="248" rx="30" fill="url(#skin)" />
+  <rect x="272" y="690" width="72" height="248" rx="30" fill="url(#skin)" />
+
+  <path d="M198 250C198 230 322 230 322 250C322 270 198 270 198 250Z" fill="#d9dde4" />
+  <path d="M186 310C186 290 334 290 334 310C334 330 186 330 186 310Z" fill="#d9dde4" />
+  <path d="M194 370C194 350 326 350 326 370C326 390 194 390 194 370Z" fill="#d9dde4" />
+  <path d="M200 450C200 430 320 430 320 450C320 470 200 470 200 450Z" fill="#d9dde4" />
+  <path d="M204 520C204 500 316 500 316 520C316 540 204 540 204 520Z" fill="#d9dde4" />
+
+  <ellipse cx="260" cy="420" rx="150" ry="220" fill="url(#shadow)" />
+</svg>

@@ -22,15 +22,6 @@ const diseases = [
     progression: ['감염 후 폐포 염증 진행', '기침, 가래 증가', '호흡 저하와 흉통'],
   },
   {
-    id: 'arthritis',
-    name: '무릎관절염',
-    region: 'knee',
-    symptoms: ['관절 통증', '붓기', '운동 제한', '걷기 불편', '열감'],
-    treatments: ['소염 진통제', '물리 치료', '근력 강화 운동'],
-    prevention: ['체중 관리', '무릎 부담 줄이기', '스트레칭'],
-    progression: ['연골 마모 시작', '염증 및 통증 증가', '관절 기능 저하'],
-  },
-  {
     id: 'hypertension',
     name: '고혈압',
     region: 'heart',
@@ -283,33 +274,6 @@ const diseases = [
     progression: ['정중신경 압박', '감각 저하', '근력 감소'],
   },
   {
-    id: 'hip_arthritis',
-    name: '고관절염',
-    region: 'hip',
-    symptoms: ['사타구니 통증', '보행 불편', '뻣뻣함', '운동 제한', '피로'],
-    treatments: ['소염 진통제', '물리 치료', '체중 관리'],
-    prevention: ['체중 관리', '무리한 운동 제한', '스트레칭'],
-    progression: ['연골 손상', '통증 증가', '가동 범위 감소'],
-  },
-  {
-    id: 'ankle_sprain',
-    name: '발목 염좌',
-    region: 'ankle',
-    symptoms: ['발목 통증', '부종', '멍', '체중 부하 어려움', '불안정감'],
-    treatments: ['냉찜질', '압박', '휴식'],
-    prevention: ['발목 스트레칭', '근력 강화', '보호대 착용'],
-    progression: ['인대 손상', '부종 증가', '기능 제한'],
-  },
-  {
-    id: 'gout',
-    name: '통풍',
-    region: 'ankle',
-    symptoms: ['급성 관절 통증', '붓기', '열감', '홍반', '야간 통증'],
-    treatments: ['소염제', '요산 조절', '수분 섭취'],
-    prevention: ['퓨린 음식 제한', '금주', '체중 관리'],
-    progression: ['요산 상승', '관절 염증', '재발 반복'],
-  },
-  {
     id: 'allergic_rhinitis',
     name: '알레르기 비염',
     region: 'head',
@@ -370,11 +334,11 @@ const diseasePriorityByAge = {
   '13-24': ['migraine', 'asthma', 'allergic_rhinitis', 'dermatitis', 'eczema', 'gastritis'],
   '25-39': ['reflux', 'ibs', 'migraine', 'gastritis', 'sinusitis'],
   '40-59': ['hypertension', 'angina', 'fatty_liver', 'diabetes', 'lumbar_pain', 'cervical_pain'],
-  '60+': ['hypertension', 'angina', 'arthritis', 'gout', 'kidney_stone', 'pneumonia'],
+  '60+': ['hypertension', 'angina', 'kidney_stone', 'pneumonia'],
 }
 
 const diseasePriorityByGender = {
-  남성: ['gout', 'hypertension', 'angina', 'kidney_stone'],
+  남성: ['hypertension', 'angina', 'kidney_stone'],
   여성: ['cystitis', 'thyroiditis', 'anemia'],
 }
 
@@ -414,17 +378,6 @@ const conditionModifiers = {
       '60+': {
         symptoms: ['식욕 저하와 탈수 동반 가능'],
         treatments: ['호흡 재활 병행'],
-      },
-    },
-  },
-  arthritis: {
-    age: {
-      '40-59': {
-        treatments: ['체중 관리와 관절 보호'],
-      },
-      '60+': {
-        symptoms: ['아침 강직 지속'],
-        treatments: ['관절 보조기 활용'],
       },
     },
   },
@@ -622,22 +575,6 @@ const conditionModifiers = {
       },
     },
   },
-  gout: {
-    gender: {
-      남성: {
-        symptoms: ['엄지발가락 관절 통증 흔함'],
-        prevention: ['알코올 섭취 제한 강화'],
-      },
-      여성: {
-        prevention: ['폐경 이후 요산 관리'],
-      },
-    },
-    age: {
-      '40-59': {
-        prevention: ['퓨린 섭취 점검'],
-      },
-    },
-  },
   osteoporosis: {
     gender: {
       여성: {
@@ -732,20 +669,6 @@ const conditionModifiers = {
       },
     },
   },
-  hip_arthritis: {
-    age: {
-      '60+': {
-        treatments: ['보행 보조기 고려'],
-      },
-    },
-  },
-  ankle_sprain: {
-    age: {
-      '13-24': {
-        prevention: ['운동 전 테이핑 고려'],
-      },
-    },
-  },
   allergic_rhinitis: {
     age: {
       '13-24': {
@@ -837,10 +760,6 @@ const regions = [
   { id: 'shoulder', label: '어깨' },
   { id: 'elbow', label: '팔꿈치' },
   { id: 'wrist', label: '손목' },
-  { id: 'hip', label: '고관절' },
-  { id: 'knee', label: '무릎' },
-  { id: 'ankle', label: '발목' },
-  { id: 'leg', label: '하지' },
   { id: 'skin', label: '피부' },
   { id: 'blood', label: '혈액' },
   { id: 'body', label: '전신' },

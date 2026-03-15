@@ -48,10 +48,10 @@ const ageRanges = ['0-12', '13-24', '25-39', '40-59', '60+']
 function App() {
   const [searchMode, setSearchMode] = useState('disease')
   const [query, setQuery] = useState('')
-  const [selectedDiseaseId, setSelectedDiseaseId] = useState(diseases[0].id)
+  const [selectedDiseaseId, setSelectedDiseaseId] = useState('')
   const [selectedSymptomId, setSelectedSymptomId] = useState('')
-  const [gender, setGender] = useState('전체')
-  const [ageRange, setAgeRange] = useState(ageRanges[2])
+  const [gender, setGender] = useState('')
+  const [ageRange, setAgeRange] = useState('')
 
   const symptoms = useMemo(() => {
     const set = new Set()
@@ -118,7 +118,7 @@ function App() {
               setQuery('')
               setSelectedSymptomId('')
               if (nextMode === 'disease') {
-                setSelectedDiseaseId(diseases[0].id)
+                setSelectedDiseaseId('')
               }
             }}
           >
@@ -131,7 +131,7 @@ function App() {
       <main className="layout">
         <section className="panel left-panel">
           <div className="panel-header">
-            <h2>{leftPanelTitle} 탭</h2>
+            <h2>{leftPanelTitle}</h2>
             <p>검색 후 선택하면 상세가 업데이트됩니다.</p>
           </div>
           <label className="search">
@@ -200,15 +200,15 @@ function App() {
                 <div className="control-card">
                   <p>개인 변수</p>
                   <div className="chips">
-                    {['전체', '남성', '여성'].map((label) => (
-                      <button
-                        key={label}
-                        className={`chip ${gender === label ? 'active' : ''}`}
-                        onClick={() => setGender(label)}
-                      >
-                        {label}
-                      </button>
-                    ))}
+            {['전체', '남성', '여성'].map((label) => (
+              <button
+                key={label}
+                className={`chip ${gender === label ? 'active' : ''}`}
+                onClick={() => setGender(label)}
+              >
+                {label}
+              </button>
+            ))}
                   </div>
                   <div className="age-grid">
                     {ageRanges.map((range) => (
@@ -238,7 +238,7 @@ function App() {
 
         <section className="panel right-panel">
           <div className="panel-header">
-            <h2>{rightPanelTitle} 탭</h2>
+            <h2>{rightPanelTitle}</h2>
             <p>선택 결과가 여기 표시됩니다.</p>
           </div>
 

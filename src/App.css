@@ -218,7 +218,7 @@
 }
 
 .body {
-  height: 420px;
+  height: 520px;
   background: #f3f5f9;
   border-radius: 32px;
   border: 1px solid #dde5ef;
@@ -230,9 +230,10 @@
 }
 
 .body-image {
-  width: min(430px, 92%);
-  height: auto;
-  filter: drop-shadow(0 20px 30px rgba(16, 24, 40, 0.22));
+  height: 100%;
+  width: auto;
+  max-width: 96%;
+  filter: drop-shadow(0 22px 32px rgba(16, 24, 40, 0.22));
   opacity: 1;
 }
 
@@ -329,164 +330,164 @@
 }
 
 .region.stomach {
-  top: 44.5%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.lung {
-  top: 33.5%;
+  top: 34%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.knee {
-  top: 82%;
+  top: 86%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.brain {
-  top: 13%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.eye {
-  top: 17.5%;
-  left: 47%;
+  top: 16%;
+  left: 47.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.ear {
-  top: 18%;
-  left: 58%;
+  top: 17.5%;
+  left: 59%;
   transform: translate(-50%, -50%);
 }
 
 .region.jaw {
-  top: 21.5%;
+  top: 20.5%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.throat {
-  top: 25%;
+  top: 24.5%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.neck {
-  top: 26.5%;
-  left: 58%;
+  top: 27%;
+  left: 58.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.heart {
-  top: 35.5%;
-  left: 50%;
+  top: 36%;
+  left: 50.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.chest {
-  top: 33.5%;
-  left: 60%;
+  top: 33%;
+  left: 62%;
   transform: translate(-50%, -50%);
 }
 
 .region.liver {
-  top: 43%;
-  left: 60%;
+  top: 43.5%;
+  left: 60.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.pancreas {
-  top: 47%;
-  left: 48%;
+  top: 47.5%;
+  left: 49%;
   transform: translate(-50%, -50%);
 }
 
 .region.intestine {
-  top: 58.5%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.kidney {
-  top: 47.5%;
-  left: 62%;
+  top: 48%;
+  left: 62.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.pelvis {
-  top: 70%;
+  top: 73%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.spine {
-  top: 40%;
+  top: 41%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.shoulder {
-  top: 30.5%;
-  left: 30%;
+  top: 29%;
+  left: 26%;
   transform: translate(-50%, -50%);
 }
 
 .region.elbow {
-  top: 47%;
-  left: 24%;
+  top: 50%;
+  left: 18.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.wrist {
-  top: 62%;
-  left: 23%;
+  top: 70%;
+  left: 16%;
   transform: translate(-50%, -50%);
 }
 
 .region.hip {
-  top: 69%;
-  left: 45%;
+  top: 72%;
+  left: 45.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.ankle {
-  top: 93%;
+  top: 97%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .region.leg {
-  top: 78%;
-  left: 60%;
+  top: 80%;
+  left: 61%;
   transform: translate(-50%, -50%);
 }
 
 .region.skin {
-  top: 36%;
-  left: 64%;
+  top: 34%;
+  left: 64.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.blood {
-  top: 36%;
+  top: 34%;
   left: 40%;
   transform: translate(-50%, -50%);
 }
 
 .region.body {
-  top: 57%;
-  left: 62%;
+  top: 58%;
+  left: 62.5%;
   transform: translate(-50%, -50%);
 }
 
 .region.head {
-  top: 12.5%;
-  left: 60%;
+  top: 12%;
+  left: 60.5%;
   transform: translate(-50%, -50%);
 }
 

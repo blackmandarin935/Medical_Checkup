@@ -800,6 +800,20 @@ function App() {
     )
   }, [selectedSymptomIds])
 
+  const partialMatchDiseases = useMemo(() => {
+    if (selectedSymptomIds.length === 0) return []
+    return diseases
+      .map((disease) => {
+        const matchCount = selectedSymptomIds.filter((symptom) =>
+          disease.symptoms.includes(symptom)
+        ).length
+        return { ...disease, matchCount }
+      })
+      .filter((disease) => disease.matchCount > 0)
+      .sort((a, b) => b.matchCount - a.matchCount || a.name.localeCompare(b.name))
+      .slice(0, 5)
+  }, [selectedSymptomIds])
+
   const demographicRankedDiseases = useMemo(() => {
     const ageBoost = diseasePriorityByAge[ageRange] || []
     const genderBoost = diseasePriorityByGender[gender] || []
@@ -1034,14 +1048,12 @@ function App() {
                 gender,
                 ageRange,
                 selectedDisease.id
-              ).map(
-                (symptom) => (
+              ).map((symptom) => (
                 <div key={symptom} className="list-item static">
                   <span>{symptom}</span>
                   <span className="tag">증상</span>
                 </div>
-                )
-              )
+              ))
             ) : demographicRankedDiseases.length > 0 ? (
               demographicRankedDiseases.map((disease) => (
                 <button
@@ -1057,6 +1069,28 @@ function App() {
                   </span>
                 </button>
               ))
+            ) : searchMode === 'symptom' && selectedSymptomIds.length > 0 ? (
+              <div className="empty">
+                선택한 증상을 모두 만족하는 질환이 없습니다. 증상을 일부 해제하거나
+                비슷한 증상으로 다시 시도해 주세요.
+                {partialMatchDiseases.length > 0 && (
+                  <div className="fallback">
+                    <p>가장 유사한 질환</p>
+                    <div className="fallback-list">
+                      {partialMatchDiseases.map((disease) => (
+                        <button
+                          key={disease.id}
+                          className="list-item"
+                          onClick={() => setSelectedDiseaseId(disease.id)}
+                        >
+                          <span>{disease.name}</span>
+                          <span className="badge">부분 일치</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="empty">검색 결과가 없습니다.</div>
             )}
